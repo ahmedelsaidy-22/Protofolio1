@@ -1,770 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="programmer.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Ahmed Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: url('BG.jpg') center/cover no-repeat fixed, #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed - Web Developer </title>
 
-        nav {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px 40px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        nav .logo {
-            height: 35px; 
-        }
-        
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 10px 30px;
-            display: flex;
-        }
-        
-        nav ul li {
-            margin: 0 15px;
-        }
-        
-        nav a {
-            color: #ff6f61;
-            text-decoration: none;
-            font-weight: bold;
-            position: relative;
-            transition: color 0.3s;
-            padding: 8px 10px;
-            border-radius: 4px;
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ff6f61;
-            transition: width 0.3s;
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        nav a:hover {
-            color: #fff;
-            background: rgba(255, 111, 97, 0.2);
-        }
-        
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 120px 20px;
-            position: relative;
-            height: 70vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('BG.jpg') center/cover no-repeat;
-        }
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 
-        .header-logo {
-            height: 80px; 
-        }
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-        .header-content {
-            z-index: 2;
-            text-align: left;
-            color: #fff;
-            max-width: 50%;
-        }
-
-        .header-content h1 {
-            margin: 0;
-            font-size: 3.5em;
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-        }
-
-        .header-content p {
-            font-size: 1.8em;
-            line-height: 1.4;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .header-buttons a {
-            background: #ff6f61;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1.1em;
-            transition: background 0.3s;
-        }
-
-        .header-buttons a:hover {
-            background: #e65550;
-        }
-
-        
-        .section {
-            padding: 30px 20px;
-            text-align: center;
-
-            background: url('BG.jpg') center/cover no-repeat fixed, #000;
-        }
-
-        .section h2 {
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            color: #ff6f61;
-        }
-
-        .projects {
-            background: rgba(34, 34, 34, 0.8);
-            padding: 20px 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .project-item {
-            background: #444;
-            border-radius: 10px;
-            overflow: hidden;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: auto;
-        }
-
-        .project-info {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .project-info h3 {
-            margin: 10px 0;
-            font-size: 1.5em;
-        }
-
-        .project-info button {
-            background: #ff6f61;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            text-decoration: none;
-            transition: background 0.3s ease;
-        }
-
-        .project-info button:hover {
-            background: #e65550;
-        }
-
-        .profile-card {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            background: rgba(34, 34, 34, 0.842); /* خلفية فاتحة لزيادة التباين */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            margin: 20px auto;
-            max-width: 800px; /* عرض أقصى مناسب للشاشات الكبيرة */
-            color: #fff;
-        }
-        
-        .profile-card img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-right: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .profile-card img:hover {
-            transform: scale(1.05); /* تكبير الصورة قليلاً عند التحويم */
-        }
-        
-        .profile-card .info {
-            max-width: calc(100% - 170px);
-        }
-        
-        .profile-card h3 {
-            margin-top: 0;
-            font-size: 2em; /* حجم أكبر للخط */
-            font-weight: bold; /* استخدام الخط العريض */
-        }
-        
-        .profile-card p {
-            font-size: 1.2em;
-            line-height: 1.5;
-        }
-        
-        .profile-card .btn {
-            background: #ff6f61;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            text-decoration: none;
-            margin-top: 20px;
-            display: inline-block;
-            transition: background 0.3s ease;
-        }
-        
-        .profile-card .btn:hover {
-            background: #e65550;
-        }
-        
-        .profile-card .contact-info {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-            font-size: 1em;
-        }
-        
-        .profile-card .contact-info i {
-            margin-right: 10px;
-            color: #ff6f61;
-        }
-        
-        .profile-card .contact-info span {
-            margin-right: 20px;
-        }
-        
-        
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px; /* تم تقليل الفجوة بين العناصر */
-            padding: 10px; /* تم تقليل الحشوات */        
-        }
-
-        .skill-item {
-            background: #ff6f61;
-            color: #ffff;
-            border-radius: 50%;
-            width: 170px;
-            height: 170px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: transform 0.3s, background-color 0.3s;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-item:hover {
-            transform: scale(1.2);
-            background-color: #1f1f1f;
-        }
-
-        .skill-item:nth-child(1) {
-            animation: randomMovement1 4s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(2) {
-            animation: randomMovement2 5s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(3) {
-            animation: randomMovement3 6s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(4) {
-            animation: randomMovement4 7s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(5) {
-            animation: randomMovement5 8s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(6) {
-            animation: randomMovement6 9s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(7) {
-            animation: randomMovement7 10s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(8) {
-            animation: randomMovement8 11s infinite ease-in-out;
-        }
-
-        .skill-item:nth-child(9) {
-            animation: randomMovement9 12s infinite ease-in-out;
-        }
-
-        @keyframes randomMovement1 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(15px, -10px); }
-            50% { transform: translate(-10px, 15px); }
-            75% { transform: translate(-15px, -10px); }
-            100% { transform: translate(10px, 15px); }
-        }
-
-        @keyframes randomMovement2 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-10px, 15px); }
-            50% { transform: translate(10px, -15px); }
-            75% { transform: translate(15px, 10px); }
-            100% { transform: translate(-15px, -10px); }
-        }
-
-        @keyframes randomMovement3 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-15px, -10px); }
-            50% { transform: translate(15px, 15px); }
-            75% { transform: translate(-10px, -15px); }
-            100% { transform: translate(10px, 10px); }
-        }
-
-        @keyframes randomMovement4 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-15px, -15px); }
-            50% { transform: translate(15px, 15px); }
-            75% { transform: translate(-10px, -10px); }
-            100% { transform: translate(10px, 10px); }
-        }
-
-        @keyframes randomMovement5 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(10px, 10px); }
-            50% { transform: translate(-10px, -10px); }
-            75% { transform: translate(15px, 15px); }
-            100% { transform: translate(-15px, -15px); }
-        }
-
-        @keyframes randomMovement6 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-10px, 10px); }
-            50% { transform: translate(10px, -10px); }
-            75% { transform: translate(15px, 15px); }
-            100% { transform: translate(-15px, -15px); }
-        }
-
-        @keyframes randomMovement7 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(15px, 10px); }
-            50% { transform: translate(-15px, -10px); }
-            75% { transform: translate(10px, -15px); }
-            100% { transform: translate(-10px, 15px); }
-        }
-
-        @keyframes randomMovement8 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-15px, -15px); }
-            50% { transform: translate(15px, 15px); }
-            75% { transform: translate(-10px, -10px); }
-            100% { transform: translate(10px, 10px); }
-        }
-
-        @keyframes randomMovement9 {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(15px, -15px); }
-            50% { transform: translate(-10px, 10px); }
-            75% { transform: translate(10px, -10px); }
-            100% { transform: translate(-15px, 15px); }
-        }
-
-        .contact form {
-            display: flex;
-            flex-direction: column;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 10px;
-            background: rgba(34, 34, 34, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact form input, .contact form textarea {
-            margin-bottom: 15px;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-
-        .contact form button {
-            background: #ff6f61;
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
-
-        .contact form button:hover {
-            background: #e65550;
-        }
-        #backToTopBtn {
-            display: none; /* مخفي بشكل افتراضي */
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99;
-            border: none;
-            outline: none;
-            background-color: #ff6f61;
-            color: white;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-        
-        #backToTopBtn:hover {
-            background-color: #e65550;
-        }
-        .social-icons {
-            padding-left: 290px;
-            display: flex;
-            gap: 25px;
-        }
-        
-        .social-link {
-            color: #fff;
-            font-size: 24px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .social-link:hover {
-            color: #e65550; /* اللون عند التمرير فوق الأيقونة */
-            transform: scale(1.1);
-        }
-        
-        .social-link i {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        span{
-           color:#e65550 ; 
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 24px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-            }
-
-            .social-icons a {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 14px;
-            }
-
-            .profile-pic {
-                width: 100px;
-                height: 100px;
-            }
-
-            .social-icons a {
-                font-size: 18px;
-            }
-        }
-    </style>
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Open+Sans:wght@400;500;700&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
 </head>
-<body>
 
-    <nav>
-        <img src="programmer.png" alt="Logo" class="logo">
-        <ul>
-            <li><a href="#profile-card">About Me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#">
+        <h1 class="logo">Ahmed Elsaidy</h1>
+      </a>
+
+      <button class="nav-toggle-btn" aria-label="Toggle Menu" data-nav-toggle-btn>
+        <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+        <ion-icon name="close-outline" class="close-icon"></ion-icon>
+      </button>
+
+      <nav class="navbar container">
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+          </li>
+
+          <li>
+            <a href="#about" class="navbar-link" data-nav-link>About</a>
+          </li>
+
+          
+          <li>
+            <a href="#skills" class="navbar-link" data-nav-link>Skills</a>
+          </li>
+          <li>
+            <a href="#blog" class="navbar-link" data-nav-link>Project</a>
+          </li>
+
+          <li>
+            <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
+          </li>
+          <li>
+            <a href="CV.pdf" class="btn btn-primary">Download CV</a>
+          </li>
+
         </ul>
-    </nav>
+      </nav>
 
-    <header>
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <section class="hero" id="home">
+        <div class="container">
+
+          <div class="hero-banner">
+
+            <img src="./assets/images/hero-banner.jpg" width="800" height="864" loading="lazy" alt="Ethan's Photo"
+              class="img-cover">
+
+            <div class="elem elem-1">
+              <p class="elem-title">2</p>
+              <p class="elem-text">Years of Success</p>
+            </div>
+            <div class="elem elem-2">
+              <p class="elem-title">20+</p>
+
+              <p class="elem-text">Projects Completed</p>
+            </div>
+
+            <div class="elem elem-3">
+              <ion-icon name="trophy"></ion-icon>
+            </div>
+            <img src="./assets/images/rotate-img.png" width="169" height="172" alt="I'm developer from New York"
+              class="rotate-img">
+
+          </div>
+
+          <div class="hero-content">
+
+            <h2 class="hero-title">
+              <span style="color:#fb523c">Hello I'm</span>
+              <strong>Ahmed Abdelwahed</strong>
+            </h2>
+
+            <p class="hero-text">
+              I am a freelance front-end designer and web developer who specializes in creating visually appealing
+               and functional websites and web pages. I design and code user interfaces that integrate text, 
+               images, videos,
+               and interactive features to deliver an engaging and seamless user experience.
+            </p>
+
+            <div class="btn-group">
+              <a href="CV.pdf" class="btn btn-primary blue">Download CV</a>
+
+              <a href="#about" class="btn">About Me</a>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" id="about">
+        <div class="container">
+
+          <figure class="about-banner">
+
+            <img src="./assets/images/about-banner.jpg" width="800" height="652" loading="lazy" alt="Ethan's Photo"
+              class="img-cover">
+
+            <img src="./assets/images/absolute-image.jpg" width="800" height="717" loading="lazy" alt="Ethan's Photo"
+              class="abs-img">
+
+            <div class="abs-icon abs-icon-1">
+              <ion-icon name="logo-css3"></ion-icon>
+            </div>
+            <div class="abs-icon abs-icon-2">
+              <ion-icon name="logo-javascript"></ion-icon>
+            </div>
+
+            <div class="abs-icon abs-icon-3">
+              <ion-icon name="logo-angular"></ion-icon>
+            </div>
+          </figure>
+
+          <div class="about-content">
+
+            <p class="section-subtitle">I'm a Developer</p>
+            
+              <h2 class="h2 section-title">Personal Information</h2>
+              <p style="margin-bottom: 8px;" class="section-text">
+              <div style="font-weight: bold;">
+              <p style="display: flex;  gap: 6px;" ><strong><span>Name:</span></strong> Ahmed Abdelwahed El-Saidy</p>
+              <p style="display: flex; gap: 6px;"><strong><span>Address:</span></strong> 206 H, Hadayek El-Ahram</p>
+              <p style="display: flex; gap: 6px;"><strong><span>Email:</span></strong> <a href="mailto:ahmedelsaiidy22@gmail.com">ahmedelsaiidy22@gmail.com</a></p>
+              <p style="display: flex; gap: 6px;"><strong><span>Phone:</span></strong> 01145959007</p>
+            </div>
+            <h2 style="margin-bottom: 8px; font-weight: bold;"" class="h2 section-title">Academic Qualifications</h2>
+            <p>Bachelor's degree in Management Information Systems from Modern Academy.</p>
+            </p>
+            <h2 style="margin-bottom: 8px; font-weight: bold;" class="h2 section-title">Work Experience</h2>
+            <p>Web Designer & Front-End Developer at (Tafraa) 6 Month</p>
+            <p>Web Designer & Front-End Developer at (Nadein agency) 5Month</p>
+            
+            <h2 style="margin-bottom: 8px;" class="h2 section-title">Personal Skills</h2>
+            <ul style="font-weight: bold;">
+              <li>Problem-Solving</li>
+              <li>Communication Skills</li>
+              <li>Teamwork</li>
+              <li>Organizational Skills</li>
+              <li>Flexibility</li>
+              <li>Attention to Detail</li>
+            </ul>
+            <a href="#blog" class="btn btn-primary blue">View Project</a>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="section skills" id="skills">
+        <div class="container">
+
+          <p class="section-subtitle">My Skills</p>
+
+          <h2 class="h2 section-title">I Develop Skills Regularly</h2>
+
+          <p class="section-text">
+            Dliquip ex ea commo do conse namber onequa ute irure dolor in reprehen derit in voluptate
+          </p>
+
+
+        </div>
+            <div class="skills-container">
+            <div class="skill-item">HTML</div>
+            <div class="skill-item">CSS</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">React</div>
+            <div class="skill-item">UI/UX</div>
+            <div class="skill-item">HTML5</div>
+            <div class="skill-item">CSS3</div>
+            <div class="skill-item">Wordpress</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">GitHub</div>
+            
+        </div>
+  
+      </section>
+
+    
+    
+
+      <!-- 
+        - #BLOG
+      -->
+
+      <section class="section blog" id="blog">
+        <div class="container">
+
+          <p class="section-subtitle">Latest News</p>
+
+          <h2 class="h2 section-title">Checkout My Recent Blogs</h2>
+
+          <p class="section-text">
+            Dliquip ex ea commo do conse namber onequa ute irure dolor in reprehen derit in voluptate
+          </p>
+
+          <ul class="blog-list">
+
+            
+
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/food-made-with-love./">
+                    <img src="./assets/images/food made with love.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>food made with love</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/food-made-with-love./" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/stay-safe-stay-healthy-/">
+                    <img src="./assets/images/stay safe, stay healthy.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>stay safe, stay healthy</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/stay-safe-stay-healthy-/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Bookly/">
+                    <img src="./assets/images/Bookly.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>Bookly</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Bookly/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Book-Your-New-Eco-Friendly/">
+                    <img src="./assets/images/Volti.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>Volti</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Book-Your-New-Eco-Friendly/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Enhance-Your-Future-With-TechEduca/">
+                    <img src="./assets/images/Enhance Your Future With TechEduca.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>Enhance Your Future With TechEduca</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Enhance-Your-Future-With-TechEduca/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Man-summer-collection/">
+                    <img src="./assets/images/shoppie.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>shoppie</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Man-summer-collection/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/covid-19/">
+                    <img src="./assets/images/covid-19.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>covid-19</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/covid-19/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Welcome-to-The-world-of-Tasty/">
+                    <img src="./assets/images/Welcome to The world of Tasty & Fresh Food.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>Welcome to The world of Tasty & Fresh Food</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Welcome-to-The-world-of-Tasty/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/let-us-brighten-your-smile/">
+                    <img src="./assets/images/let us brighten your smile.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>let us brighten your smile</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/let-us-brighten-your-smile/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li> 
+                <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/High-Quality-Pet-Food/">
+                    <img src="./assets/images/kitter-master.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>High Quality Pet Food</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/High-Quality-Pet-Food/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/popular-dishes/">
+                    <img src="./assets/images/popular dishes.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>popular dishes</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/popular-dishes/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/homemade-Pepperoni-Pizza/">
+                    <img src="./assets/images/homemade Pepperoni Pizza.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>homemade Pepperoni Pizza</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/homemade-Pepperoni-Pizza/" class="card-tag" style="color: #fff;" >View Project </a></button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/resturant-Chef-main/">
+                    <img src="./assets/images/WELCOME TO ROYATE.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>WELCOME TO ROYATE</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/resturant-Chef-main/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Xpremo/">
+                    <img src="./assets/images/Xpremo.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>Xpremo</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Xpremo/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Epic-Games-Made-For-True-Gamers/">
+                    <img src="./assets/images/unigine.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>unigine</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Epic-Games-Made-For-True-Gamers/" class="card-tag" style="color: #fff;">View Project</a> </button>
+              </div>
+            </li>
+            
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/crafti/">
+                    <img src="./assets/images/crafti-master.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>crafti</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/crafti/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+            
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/autofix/">
+                    <img src="./assets/images/autofix-master.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>autofix</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/autofix/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
        
-        <div class="header-content">
-            <h1><span>Hi. I'm</span></h1>
-            <h1>Ahmed AbdelWahed</h1>
-            <p>Web Designer & Front-End Developer</p>
-            <div class="header-buttons">
-                <a href="#contact">Contact Me</a>
-                <a href="cv.pdf" download>Download CV</a>
-            </div>
-        </div>
-      
-    </header>
-    <div class="profile-card">
-        <div class="overlay">
-            <img src="ahmd.jpg" alt="Profile Picture" class="profile-image">
-            <div class="info">
-                <h3><span>Ahmed AbdelWahed El-saidy</span></h3>
-                <div class="card">
-  <h2>Personal Information</h2>
-  <p><strong><span>Name:</span></strong> Ahmed Abdelwahed El-Saiidy</p>
-  <p><strong><span>Address:</span></strong> 206 H, Hadayek El-Ahram</p>
-  <p><strong><span>Email:</span></strong> <a href="mailto:ahmedelsaiidy22@gmail.com">ahmedelsaiidy22@gmail.com</a></p>
-  <p><strong><span>Phone:</span></strong> 01145959007</p>
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="https://ahmedelsaidy-22.github.io/Crafting-project-specific-solutions-with-expertise/">
+                    <img src="./assets/images/Crafting project specific solutions with expertise.png" width="1181" height="843" loading="lazy"
+                      alt="Jim Morisson Says when the musics over turn off the light" class="img-cover">
+                 </a>
+                </figure>
+                <h3>Crafting project specific solutions with expertise</h3>
+                <button><a href="https://ahmedelsaidy-22.github.io/Crafting-project-specific-solutions-with-expertise/" class="card-tag" style="color: #fff;">View Project </a></button>
+              </div>
+            </li>
+        
 
-  <h3><span>About Me</span></h3>
-  <p>I am a recent graduate and a Front-End Developer and Web Designer.<br>
-     I excel in creating dynamic and innovative web experiences using a variety of technologies and methodologies.</p>
+           
 
-  <h3><span>Academic Qualifications</span></h3>
-  <p>Bachelor's degree in Management Information Systems from Modern Academy.</p>
+          </ul>
 
-  <h3><span>Work Experience</span></h3>
-  <p>1 year of experience in the field of Front-End Development.</p>
-  <h3><span>Personal Skills</span></h3>
-  <ul>
-    <li>Problem-Solving</li>
-    <li>Communication Skills</li>
-    <li>Teamwork</li>
-    <li>Organizational Skills</li>
-    <li>Flexibility</li>
-    <li>Attention to Detail</li>
-  </ul>
-</div>
+        </div>
+      </section>
 
-<div class="social-icons">
-    <a href="https://www.facebook.com/ahmed.abdelwahed.9638?mibextid=kFxxJD" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/ahmed_elsaidy44?igsh=MWxjYWlheG9rYnB4Ng==" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.linkedin.com/in/ahmed-elsaiidy-424b34316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://wa.me/01145959007" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
-    <a href="mailto:ahmedelsaiidy22@gmail.com" target="_blank" class="social-link"><i class="fas fa-envelope"></i></a>
-</div>
-            </div>
-        </div>
-    </div>
-    
+    </article>
+  </main>
 
-<section id="projects" class="section projects">
-    <h2>Projects</h2>
-    <div class="project-grid">
-        <div class="project-item">
-            <img src="food made with love.png" alt="Project 1">
-            <div class="project-info">
-                <h3>Project 1</h3>
-                <a href="https://ahmedelsaidy-22.github.io/food-made-with-love./" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="stay safe, stay healthy.png" alt="Project 2">
-            <div class="project-info">
-                <h3>Project 2</h3>
-                <a href="https://ahmedelsaidy-22.github.io/stay-safe-stay-healthy-/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="Bookly.png" alt="Project 3">
-            <div class="project-info">
-                <h3>Project 3</h3>
-                <a href="https://ahmedelsaidy-22.github.io/Bookly/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-          <div class="project-item">
-            <img src="Enhance Your Future With TechEduca.png" alt="Project 6">
-            <div class="project-info">
-                <h3>Project 4</h3>
-                <a href="https://ahmedelsaidy-22.github.io/Enhance-Your-Future-With-TechEduca/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>  
-    
-        <div class="project-item">
-            <img src="Welcome to The world of Tasty & Fresh Food.png" alt="Project 5">
-            <div class="project-info">
-                <h3>Project 5</h3>
-                <a href="https://ahmedelsaidy-22.github.io/Welcome-to-The-world-of-Tasty/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-      
-        <div class="project-item">
-            <img src="let us brighten your smile.png" alt="Project 7">
-            <div class="project-info">
-                <h3>Project 6</h3>
-                <a href="https://ahmedelsaidy-22.github.io/let-us-brighten-your-smile/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="popular dishes.png" alt="Project 8">
-            <div class="project-info">
-                <h3>Project 7</h3>
-                <a href="https://ahmedelsaidy-22.github.io/popular-dishes/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-    
-      
-        <div class="project-item">
-            <img src="Protofolio1.png" alt="Project 10">
-            <div class="project-info">
-                <h3>Project 8</h3>
-                <a href="https://ahmedelsaidy-22.github.io/Protofolio/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="homemade Pepperoni Pizza.png" alt="Project 11">
-            <div class="project-info">
-                <h3>Project 9</h3>
-                <a href="https://ahmedelsaidy-22.github.io/homemade-Pepperoni-Pizza/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="WELCOME TO ROYATE.png" alt="Project 11">
-            <div class="project-info">
-                <h3>Project 10</h3>
-                <a href="https://ahmedelsaidy-22.github.io/resturant-Chef-main/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="Xpremo.png" alt="Project 11">
-            <div class="project-info">
-                <h3>Project 11</h3>
-                <a href="https://ahmedelsaidy-22.github.io/Xpremo/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-        <div class="project-item">
-            <img src="Welcome To Restaurant.png" alt="Project 11">
-            <div class="project-info">
-                <h3>Project 12</h3>
-                <a href="https://ahmedelsaidy-22.github.io/Welcome-To-Restaurant/" target="_blank">
-                    <button>View Project</button>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section id="skills" class="section skills">
-    <h2>Skills</h2>
-    <div class="skills-container">
-        <div class="skill-item">HTML</div>
-        <div class="skill-item">CSS</div>
-        <div class="skill-item">JavaScript</div>
-        <div class="skill-item">React</div>
-        <div class="skill-item">UI/UX</div>
-        <div class="skill-item">HTML5</div>
-        <div class="skill-item">CSS3</div>
-        <div class="skill-item">GitHub</div>
-        <div class="skill-item">SQL</div>
-        <div class="skill-item">Woedbress</div>
-    </div>
-</section>
+     <!-- 
+        - #CONTACT
+      -->
 
-<section id="contact" class="section contact">
-    <h2>Contact</h2>
-    <p>Feel free to reach out to me through the form below.</p>
-    <form>
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" placeholder="Message" rows="5" required></textarea>
-        <button type="submit">Send</button>
-    </form>
-</section>
-<button id="backToTopBtn" title="Back to Top">Top</button>
+      <section class="section contact" id="contact">
+        <div class="container">
+
+          <div class="contact-card">
+
+            <p class="card-subtitle">Don't be shy</p>
+
+            <h2 class="h2 section-title">Drop Me a Line</h2>
+
+            <div class="wrapper">
+
+              <form action="" class="contact-form">
+
+                <input type="text" name="name" placeholder="Name" required class="contact-input">
+
+                <input type="email" name="email" placeholder="Email" required class="contact-input">
+
+                <textarea name="message" placeholder="Message" required class="contact-input"></textarea>
+
+                <button type="submit" class="btn-submit">Submit Message</button>
+
+              </form>
+
+              <ul class="contact-list">
+
+                <li class="contact-item">
+
+                  <div class="contact-icon">
+                    <ion-icon name="location"></ion-icon>
+                  </div>
+
+                  <div>
+                    <h3 class="contact-item-title">Address</h3>
+
+                    <address class="contact-item-link">
+                      206 H, Hadayek El-Ahram
+                    </address>
+                  </div>
+
+                </li>
+
+                <li class="contact-item">
+
+                  <div class="contact-icon">
+                    <ion-icon name="mail"></ion-icon>
+                  </div>
+
+                  <div>
+                    <h3 class="contact-item-title">Email</h3>
+
+                    <a href="mailto:hello@ethan.com" class="contact-item-link">ahmedelsaiidy22@gmail.com</a>
+                  </div>
+
+                </li>
+
+                <li class="contact-item">
+
+                  <div class="contact-icon">
+                    <ion-icon name="call"></ion-icon>
+                  </div>
+
+                  <div>
+                    <h3 class="contact-item-title">Phone</h3>
+
+                    <a href="tel:+1234567890" class="contact-item-link"> 01145959007</a>
+                  </div>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-to-top" data-back-to-top>BACK TOP</a>
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
-<script>
-    window.onscroll = function() {scrollFunction()};
-    
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("backToTopBtn").style.display = "block";
-        } else {
-            document.getElementById("backToTopBtn").style.display = "none";
-        }
-    }
-    
-    document.getElementById("backToTopBtn").onclick = function() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-    </script>
+
 </html>
